@@ -1,0 +1,13 @@
+*.o
+*.a
+*.so
+main_static
+main_dynamic
+swap_prog
+revert_prog
+test/test_run
+*.o
+sequential_min_max
+parallel_min_max
+exec_sequential
+min_max_*.txt

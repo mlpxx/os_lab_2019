@@ -1,0 +1,21 @@
+CC=gcc
+CFLAGS=-I. -pthread
+
+
+all : psum
+
+# sum.o упаковывается в статическую библиотеку libsum.a, psum линкуется с ней
+psum : parallel_sum.c libsum.a utils.o sum.h utils.h
+	$(CC) -o psum parallel_sum.c utils.o -L. -lsum $(CFLAGS)
+
+libsum.a : sum.o
+	ar rcs libsum.a sum.o
+
+sum.o : sum.c sum.h
+	$(CC) -o sum.o -c sum.c $(CFLAGS)
+
+utils.o : utils.c utils.h
+	$(CC) -o utils.o -c utils.c $(CFLAGS)
+
+clean :
+	rm -f sum.o utils.o libsum.a psum
